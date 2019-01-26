@@ -12,13 +12,16 @@ export default class Home extends React.Component {
           <View style={styles.content}>
             <Text style={styles.text}>Select a card to play or edit, or create a new one!</Text>
             <View style={styles.card}>
-              <Text>Card</Text>
+              <Text>React</Text>
+              <Text>3 cards</Text>
             </View>
             <View style={styles.card}>
-              <Text>Card</Text>
+              <Text>Redux</Text>
+              <Text>19 cards</Text>
             </View>
             <View style={styles.card}>
-              <Text>Card</Text>
+              <Text>Udacity</Text>
+              <Text>7 cards</Text>
             </View>
           </View>
         </ScrollView>
@@ -80,9 +83,9 @@ const styles = StyleSheet.create({
     zIndex: 2,
     right: 0,
     bottom: 0,
-    width: 55,
-    height: 55,
-    margin: 20,
+    width: 60,
+    height: 60,
+    margin: 25,
     padding: 5,
     borderRadius: 5,
     position: 'absolute',
@@ -90,13 +93,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOpacity: 0.25,
+    shadowOpacity: 0.35,
     justifyContent: 'center',
-    shadowOffset: { width: 0, height: 1 },
+    shadowOffset: { width: 0, height: 2 },
   },
   buttonText: {
+    fontSize: 35,
     color: '#fff',
-    fontSize: 60,
     fontWeight: 'bold'
   }
 })
