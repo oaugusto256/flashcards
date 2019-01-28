@@ -1,5 +1,22 @@
 import React from 'react';
 import { Text, View, ScrollView, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import Card from '../components/Card';
+
+const cards = [
+  {
+    name: 'React',
+    cards: 3
+  },
+  {
+    name: 'Redux',
+    cards: 19
+  },
+  {
+    name: 'Udacity',
+    cards: 7
+  }
+]
 
 export default class Home extends React.Component {
   render() {
@@ -10,19 +27,10 @@ export default class Home extends React.Component {
         </View>
         <ScrollView>
           <View style={styles.content}>
-            <Text style={styles.text}>Select a card to play or edit, or create a new one!</Text>
-            <View style={styles.card}>
-              <Text>React</Text>
-              <Text>3 cards</Text>
-            </View>
-            <View style={styles.card}>
-              <Text>Redux</Text>
-              <Text>19 cards</Text>
-            </View>
-            <View style={styles.card}>
-              <Text>Udacity</Text>
-              <Text>7 cards</Text>
-            </View>
+            <Text style={styles.text}>Select a deck to play or edit, or create a new one!</Text>
+            <Card card={cards[0]} />
+            <Card card={cards[1]} />
+            <Card card={cards[2]} />
           </View>
         </ScrollView>
         <TouchableOpacity style={styles.buttonAdd}>
@@ -67,6 +75,8 @@ const styles = StyleSheet.create({
   },
   card: {
     flex: 1,
+    flexDirection : 'row',
+    alignItems: 'center',
     height: 60,
     padding: 7.5,
     shadowRadius: 1,
@@ -74,9 +84,13 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     shadowColor: '#000',
     shadowOpacity: 0.25,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     backgroundColor: '#eeeeee',
     shadowOffset: { width: 0, height: 1 },
+  },
+  cardTextName: {
+    fontSize: 14,
+    fontWeight: 'bold',
   },
   buttonAdd: {
     flex: 1,
