@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, View, ScrollView, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import Card from '../components/Card';
+import Header from '../components/Header';
+import DeckCard from '../components/DeckCard';
 
-const cards = [
+const decks = [
   {
     name: 'React',
     cards: 3
@@ -22,15 +22,13 @@ export default class Home extends React.Component {
   render() {
     return (
       <View style={styles.screen}>
-        <View style={styles.header}>
-          <Text style={styles.textHeader}>Home</Text>
-        </View>
+        <Header text={'Home'} />
         <ScrollView>
           <View style={styles.content}>
-            <Text style={styles.text}>Select a deck to play or edit, or create a new one!</Text>
-            <Card card={cards[0]} />
-            <Card card={cards[1]} />
-            <Card card={cards[2]} />
+            <Text style={styles.text}>Select a deck to play or edit at the list, or create a new one with the button at the bottom!</Text>
+            <DeckCard deck={decks[0]} />
+            <DeckCard deck={decks[1]} />
+            <DeckCard deck={decks[2]} />
           </View>
         </ScrollView>
         <TouchableOpacity style={styles.buttonAdd}>
@@ -48,21 +46,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 20,
     height: height,
-  },
-  header: {
-    height: 60,
-    padding: 10,
-    justifyContent: 'center',
-    backgroundColor: '#393e46',
-    shadowRadius: 1,
-    shadowColor: '#000',
-    shadowOpacity: 0.25,
-    shadowOffset: { width: 0, height: 1 },
-  },
-  textHeader: {
-    fontSize: 20,
-    color: '#ffffff',
-    fontWeight: 'bold',
   },
   text: {
     fontSize: 16,
