@@ -43,7 +43,7 @@ export default class CreateDeck extends Component {
             <TextInput
               style={styles.input}
               value={this.state.deckTitle}
-              placeholder={"Enter the' deck name"}
+              placeholder={"Enter the deck' name"}
               onChangeText={(deckTitle) => this.setState({ deckTitle })}
             />
             <TouchableOpacity style={styles.buttonAdd}>
@@ -82,10 +82,11 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     fontSize: 14,
+    color: '#d8d8d8'
   },
   input: {
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 15,
+    paddingBottom: 15,
     paddingLeft: 5,
     marginTop: 2.5,
     borderBottomWidth: 0.75,
