@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
+  TextInput,
   StatusBar,
   StyleSheet,
   Dimensions,
-  TextInput,
+  TouchableOpacity,
 } from 'react-native';
 import EmphasizeText from '../components/EmphasizeText';
 
@@ -36,15 +37,19 @@ export default class CreateDeck extends Component {
           <View style={styles.content}>
             <Text style={styles.introText}>First,</Text>
             <Text style={styles.text}>What name you will give to your <EmphasizeText text={'new'} /> deck?</Text>
-            <EmphasizeText text={'Name:'} />
+            <Text style={styles.inputLabel}>
+              Deck' name
+            </Text>
             <TextInput
-              style={styles.textInput}
+              style={styles.input}
               value={this.state.deckTitle}
-              placeholder={'Type the deck name'}
+              placeholder={"Enter the' deck name"}
               onChangeText={(deckTitle) => this.setState({ deckTitle })}
             />
             <TouchableOpacity style={styles.buttonAdd}>
-              <Ionicons name="ios-add" size={30} color="#fff" />
+              <Text style={styles.buttonAddText}>
+                Create Deck
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -73,33 +78,38 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    padding: 10,
-  },
-  textInput: {
     padding: 15,
-    borderRadius: 3,
-    borderWidth: 0.75,
-    borderColor: '#d8d8d8',
-    marginTop: 10
+  },
+  inputLabel: {
+    fontSize: 14,
+  },
+  input: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 5,
+    marginTop: 2.5,
+    borderBottomWidth: 0.75,
+    borderBottomColor: '#d8d8d8',
+  },
+  buttonCreateContainer: {
+    flex: 1,
+    flexDirection: 'column-reverse',
   },
   buttonAdd: {
-    flex: 1,
-    zIndex: 2,
-    right: 0,
-    bottom: 0,
-    width: 60,
-    height: 60,
+    height: 50,
     padding: 5,
-    borderRadius: 5,
-    marginRight: 30,
-    marginBottom: 30,
-    position: 'absolute',
-    backgroundColor: '#00adb5',
-    justifyContent: 'center',
+    marginTop: 15,
+    borderRadius: 3,
+    marginBottom: 10,
     alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#00adb5',
     shadowColor: '#000',
     shadowOpacity: 0.35,
     justifyContent: 'center',
     shadowOffset: { width: 0, height: 2 },
+  },
+  buttonAddText: {
+    color: '#fff'
   }
 })

@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
   },
   deckTextName: {
     fontSize: 14,
-    fontWeight: 'bold',
   },
   deckTextCards: {
     fontWeight: '200'

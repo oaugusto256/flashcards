@@ -80,14 +80,14 @@ const styles = StyleSheet.create({
   introText: {
     fontSize: 30,
     fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 15,
+    marginBottom: 15,
   },
   emphasizeText: {
     fontWeight: 'bold'
   },
   content: {
     flex: 1,
-    padding: 10,
+    padding: 15,
   }
 })
