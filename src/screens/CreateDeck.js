@@ -26,6 +26,10 @@ export default class CreateDeck extends Component {
     deckTitle: ''
   }
 
+  onCreate = () => {
+    this.props.navigation.navigate('Deck')
+  }
+
   render() {
     return (
       <>
@@ -38,7 +42,7 @@ export default class CreateDeck extends Component {
             <Text style={styles.introText}>First,</Text>
             <Text style={styles.text}>What name you will give to your <EmphasizeText text={'new'} /> deck?</Text>
             <Text style={styles.inputLabel}>
-              Deck' name
+              Deck' name:
             </Text>
             <TextInput
               style={styles.input}
@@ -46,9 +50,9 @@ export default class CreateDeck extends Component {
               placeholder={"Enter the deck' name"}
               onChangeText={(deckTitle) => this.setState({ deckTitle })}
             />
-            <TouchableOpacity style={styles.buttonAdd}>
+            <TouchableOpacity style={styles.buttonAdd} onPress={this.onCreate}>
               <Text style={styles.buttonAddText}>
-                Create Deck
+                Create
               </Text>
             </TouchableOpacity>
           </View>
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     fontSize: 14,
-    color: '#d8d8d8'
+    color: '#777'
   },
   input: {
     paddingTop: 15,
@@ -90,7 +94,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     marginTop: 2.5,
     borderBottomWidth: 0.75,
-    borderBottomColor: '#d8d8d8',
+    borderBottomColor: '#777',
   },
   buttonCreateContainer: {
     flex: 1,
