@@ -86,15 +86,15 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     fontSize: 14,
-    color: '#777'
   },
   input: {
+    marginTop: 5,
     paddingTop: 15,
+    paddingLeft: 10,
     paddingBottom: 15,
-    paddingLeft: 5,
-    marginTop: 2.5,
-    borderBottomWidth: 0.75,
-    borderBottomColor: '#777',
+    borderRadius: 3,
+    borderWidth: 0.75,
+    borderColor: '#eeeeee',
   },
   buttonCreateContainer: {
     flex: 1,

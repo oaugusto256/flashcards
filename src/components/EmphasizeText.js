@@ -9,6 +9,7 @@ export default EmphasizeText = ({ text }) => {
 
 const styles = StyleSheet.create({
   emphasizeText: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: '#ed553b'
   },
 })

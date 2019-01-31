@@ -7,6 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
+import EmphasizeText from '../components/EmphasizeText';
 
 export default class Deck extends Component {
   static navigationOptions = {
@@ -59,13 +60,17 @@ export default class Deck extends Component {
               </TouchableOpacity>
             </View>
           </View>
+          <View style={styles.listCardsContainer}>
+            <Text style={styles.introText}>Card' list</Text>
+            <Text style={styles.subText}>No card was <EmphasizeText text={'added'} /> yet!</Text>
+          </View>
         </View>
       </>
     );
   }
 }
 
-const { height, width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   screen: {
@@ -80,7 +85,7 @@ const styles = StyleSheet.create({
   },
   subText: {
     fontSize: 16,
-    marginTop: 10,
+    marginTop: 5,
     marginBottom: 20,
     color: '#777'
   },
@@ -89,6 +94,11 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   actionContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 15,
+  },
+  listCardsContainer: {
     flex: 4,
     padding: 15,
   },
@@ -122,7 +132,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#00adb5',
+    backgroundColor: '#173f5f',
     shadowColor: '#000',
     shadowOpacity: 0.35,
     justifyContent: 'center',
@@ -136,7 +146,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#00adb5',
+    backgroundColor: '#ed553b',
     shadowColor: '#000',
     shadowOpacity: 0.35,
     justifyContent: 'center',

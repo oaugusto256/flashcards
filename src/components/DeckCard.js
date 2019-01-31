@@ -10,7 +10,7 @@ export default DeckCard = ({ deck }) => {
       </View>
       <Text style={styles.deckTextCards}>{deck.cards} cards</Text>
       <TouchableOpacity style={styles.containerButtonOptions}>
-        <Ionicons name="ios-options" size={25} color="#777" />
+        <Ionicons name="ios-options" size={25} color="#fff" />
       </TouchableOpacity>
     </View>
   );
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     flexDirection : 'row',
     alignItems: 'center',
     height: 60,
-    borderBottomColor: '#00adb5',
+    borderBottomColor: '#173f5f',
     borderBottomWidth: 3,
     shadowRadius: 1,
     borderRadius: 5,
@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
     padding: 15,
     borderTopRightRadius: 3,
     borderBottomRightRadius: 3,
-    backgroundColor: '#d8d8d8',
+    backgroundColor: '#00adb5',
   }
 })
