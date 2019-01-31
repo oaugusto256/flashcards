@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
   },
   subText: {
     fontSize: 16,
-    marginTop: 5,
     marginBottom: 20,
     color: '#777'
   },

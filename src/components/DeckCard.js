@@ -2,14 +2,14 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default DeckCard = ({ deck }) => {
+export default DeckCard = ({ deck, navigation }) => {
   return (
     <View style={styles.deckContainer}>
       <View style={styles.containerTextName}>
         <Text style={styles.deckTextName}>{deck.name}</Text>
       </View>
       <Text style={styles.deckTextCards}>{deck.cards} cards</Text>
-      <TouchableOpacity style={styles.containerButtonOptions}>
+      <TouchableOpacity style={styles.containerButtonOptions}  onPress={() => navigation.navigate('Deck')}>
         <Ionicons name="ios-options" size={25} color="#fff" />
       </TouchableOpacity>
     </View>

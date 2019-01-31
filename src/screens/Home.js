@@ -51,9 +51,18 @@ export default class Home extends Component {
               <Text style={styles.introText}>Welcome!</Text>
               <Text style={styles.text}>Select a deck to <EmphasizeText text={'play'}/> or <EmphasizeText text={'edit'}/> at the list below, or <EmphasizeText text={'create'}/> a new one with the button at the bottom.
               </Text>
-              <DeckCard deck={decks[0]} />
-              <DeckCard deck={decks[1]} />
-              <DeckCard deck={decks[2]} />
+              <DeckCard
+                deck={decks[0]}
+                navigation={this.props.navigation}
+              />
+              <DeckCard
+                deck={decks[1]}
+                navigation={this.props.navigation}
+              />
+              <DeckCard
+                deck={decks[2]}
+                navigation={this.props.navigation}
+              />
             </View>
           </ScrollView>
           <ButtonAddDeck
