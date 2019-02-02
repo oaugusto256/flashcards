@@ -12,13 +12,13 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-      case GETTING_DECK:
-          return { ...state, loading: true };
-      case SUCCESS_GETTING_DECK:
-          return { ...state, loading: false, decks: [...action.payload] };
-      case ERROR_GETTING_DECK:
-          return { ...state, loading: false };
-      default:
-          return state;
+    case GETTING_DECK:
+        return { ...state, loading: true };
+    case SUCCESS_GETTING_DECK:
+        return { ...state, loading: false, decks: [...action.payload] };
+    case ERROR_GETTING_DECK:
+        return { ...state, loading: false };
+    default:
+        return state;
   }
 };
