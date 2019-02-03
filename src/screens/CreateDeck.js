@@ -30,16 +30,23 @@ class CreateDeck extends Component {
 
   onCreate = () => {
     if(this.state.deckTitle !== '' && this.state.deckTitle.length >= 3) {
+      const id = Math.random().toString(36).substr(-8);
+      const title = this.state.deckTitle;
 
-      this.props.saveDeckTitle(this.state.deckTitle);
+      this.props.saveDeckTitle(id, title);
 
-      this.props.navigation.navigate('Deck');
+      // this.props.navigation.navigate('Deck');
     }
+  }
+
+  debugState = () => {
+    console.log(this.props);
   }
 
   render() {
     return (
       <>
+        {this.debugState()}
         <StatusBar
           barStyle="light-content"
           backgroundColor="#393e46"

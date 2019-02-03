@@ -17,19 +17,15 @@ export const getDecks = () => {
   }
 }
 
-export const saveDeckTitle = ({ id, title }) => {
-  console.log(id, title);
+export const saveDeckTitle = (id, title) => {
   return dispatch => {
-    AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
-      [id]: title
-    })).then(result => {
-      console.log(result)
-      dispatch({
-        type: SAVING_DECK,
-        action: result
-      })
-    }).catch(error => {
-      console.log(error)
+    const deck = { id, title }
+
+    AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({ [id]: title }))
+
+    dispatch({
+      type: SAVING_DECK,
+      payload: deck
     })
   }
 }

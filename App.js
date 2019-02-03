@@ -18,7 +18,7 @@ const AppNavigator = createStackNavigator(
     Deck: DeckScreen
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "CreateDeck"
   }
 );
 

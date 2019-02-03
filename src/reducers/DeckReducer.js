@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SAVING_DECK:
-      return { ...state }
+      return { ...state, decks: [...state.decks, action.payload] }
     case GETTING_DECK:
         return { ...state, loading: true }
     case SUCCESS_GETTING_DECK:
