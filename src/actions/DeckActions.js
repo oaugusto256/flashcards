@@ -99,3 +99,13 @@ export const removeDeck = (id) => {
     })
 
 }
+
+export const addCard = (card, deckId) => {
+  return dispatch => {
+    dispatch({
+      LOADING
+    })
+
+    console.log(card, deckId)
+  }
+}

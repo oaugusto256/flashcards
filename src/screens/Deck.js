@@ -53,8 +53,9 @@ class Deck extends Component {
     }
   }
 
-  onCreate = () => {
-    this.props.navigation.navigate('Home')
+  onAddCard = () => {
+    const { id } = this.state;
+    this.props.navigation.navigate('AddCard', { id });
   }
 
   render() {
@@ -83,7 +84,7 @@ class Deck extends Component {
                     </Text>
                   </TouchableOpacity>
                   <View style={styles.flexContainer}>
-                    <TouchableOpacity style={styles.buttonAddCard}>
+                    <TouchableOpacity style={styles.buttonAddCard} onPress={this.onAddCard}>
                       <Text style={styles.buttonLabel}>
                         Add Card
                       </Text>

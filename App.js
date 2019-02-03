@@ -3,6 +3,7 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import HomeScreen from './src/screens/Home';
 import DeckScreen from './src/screens/Deck';
 import CreateDeckScreen from './src/screens/CreateDeck';
+import AddCardScreen from './src/screens/AddCard';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -15,7 +16,8 @@ const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     CreateDeck: CreateDeckScreen,
-    Deck: DeckScreen
+    Deck: DeckScreen,
+    AddCard: AddCardScreen,
   },
   {
     initialRouteName: "Home"
