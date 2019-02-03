@@ -9,8 +9,10 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import EmphasizeText from '../components/EmphasizeText';
+import { connect } from 'react-redux';
+import { saveDeckTitle } from '../actions';
 
-export default class CreateDeck extends Component {
+class CreateDeck extends Component {
   static navigationOptions = {
     title: 'Create Deck',
     headerStyle: {
@@ -27,7 +29,12 @@ export default class CreateDeck extends Component {
   }
 
   onCreate = () => {
-    this.props.navigation.navigate('Deck')
+    if(this.state.deckTitle !== '' && this.state.deckTitle.length >= 3) {
+
+      this.props.saveDeckTitle(this.state.deckTitle);
+
+      this.props.navigation.navigate('Deck');
+    }
   }
 
   render() {
@@ -61,6 +68,18 @@ export default class CreateDeck extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    decks: state.deck.decks,
+    error: state.deck.error,
+    loading: state.deck.loading,
+  };
+};
+
+export default connect(mapStateToProps, {
+  saveDeckTitle
+})(CreateDeck);
 
 const { height, width } = Dimensions.get('window');
 
