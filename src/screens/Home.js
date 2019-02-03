@@ -117,8 +117,8 @@ const styles = StyleSheet.create({
   introText: {
     fontSize: 30,
     fontWeight: 'bold',
-    marginTop: 15,
-    marginBottom: 15,
+    marginTop: 10,
+    marginBottom: 10,
   },
   emphasizeText: {
     fontWeight: 'bold'

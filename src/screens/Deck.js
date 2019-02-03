@@ -11,6 +11,8 @@ import {
 import EmphasizeText from '../components/EmphasizeText';
 import { connect } from 'react-redux';
 import { verifyCurrentStorage } from '../actions';
+import QuestionCard from '../components/QuestionCard';
+import { ScrollView } from 'react-native-gesture-handler';
 
 class Deck extends Component {
   static navigationOptions = {
@@ -53,6 +55,25 @@ class Deck extends Component {
     }
   }
 
+  renderQuestionCards = () => {
+    const { decks } = this.props;
+    const { id } = this.state;
+
+    if(decks[id].questions.length === 0) {
+      return (
+        <Text style={styles.subText}>No card was <EmphasizeText text={'added'} /> yet!</Text>
+      )
+    } else {
+      return (
+        <ScrollView>
+          {decks[id].questions.map(question => {
+            return <QuestionCard key={question.question} question={question} />
+          })}
+        </ScrollView>
+      )
+    }
+  }
+
   onAddCard = () => {
     const { id } = this.state;
     this.props.navigation.navigate('AddCard', { id });
@@ -78,7 +99,7 @@ class Deck extends Component {
                   <Text style={styles.subText}>{`${this.props.decks[id].questions.length} cards`}</Text>
                 </View>
                 <View style={styles.actionContainer}>
-                  <TouchableOpacity style={styles.butonStart}>
+                  <TouchableOpacity style={this.props.decks[id].questions.length > 0 ? styles.buttonStart : styles.buttonDisable}>
                     <Text style={styles.buttonLabel}>
                       Start Quiz
                     </Text>
@@ -97,8 +118,8 @@ class Deck extends Component {
                   </View>
                 </View>
                 <View style={styles.listCardsContainer}>
-                  <Text style={styles.introText}>Card' list</Text>
-                  <Text style={styles.subText}>No card was <EmphasizeText text={'added'} /> yet!</Text>
+                  <Text style={styles.introText}>Questions list</Text>
+                  {this.renderQuestionCards()}
                 </View>
               </>
             }
@@ -134,9 +155,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   subText: {
+    color: '#777',
     fontSize: 16,
-    marginBottom: 20,
-    color: '#777'
+    marginBottom: 5,
   },
   loadingContainer: {
     flex: 1,
@@ -162,7 +183,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  butonStart: {
+  buttonStart: {
     height: 50,
     padding: 5,
     borderRadius: 3,
@@ -188,6 +209,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#173f5f',
+    shadowColor: '#000',
+    shadowOpacity: 0.35,
+    justifyContent: 'center',
+    shadowOffset: { width: 0, height: 2 },
+  },
+  buttonDisable: {
+    height: 50,
+    padding: 5,
+    marginTop: 15,
+    borderRadius: 3,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#777',
     shadowColor: '#000',
     shadowOpacity: 0.35,
     justifyContent: 'center',

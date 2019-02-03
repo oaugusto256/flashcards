@@ -72,7 +72,10 @@ class AddCard extends Component {
               placeholder={"Enter the card' answer"}
               onChangeText={(answer) => this.setState({ answer })}
             />
-            <TouchableOpacity style={styles.buttonAdd} onPress={this.onCreate}>
+            <TouchableOpacity
+              style={this.state.question.length >= 3 && this.state.answer.length >= 3  ? styles.buttonAdd : styles.buttonAddDisable}
+              onPress={this.onCreate}
+            >
               <Text style={styles.buttonAddText}>
                 Add Card
               </Text>
@@ -144,6 +147,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#00adb5',
+    shadowColor: '#000',
+    shadowOpacity: 0.35,
+    justifyContent: 'center',
+    shadowOffset: { width: 0, height: 2 },
+  },
+  buttonAddDisable: {
+    height: 50,
+    padding: 5,
+    marginTop: 15,
+    borderRadius: 3,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#777',
     shadowColor: '#000',
     shadowOpacity: 0.35,
     justifyContent: 'center',

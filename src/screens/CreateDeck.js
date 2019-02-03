@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import EmphasizeText from '../components/EmphasizeText';
 import { connect } from 'react-redux';
-import { saveDeckTitle } from '../actions';
+import { saveDeck } from '../actions';
 
 class CreateDeck extends Component {
   static navigationOptions = {
@@ -25,15 +25,15 @@ class CreateDeck extends Component {
   };
 
   state = {
-    deckTitle: ''
+    title: ''
   }
 
   onCreate = () => {
-    if(this.state.deckTitle !== '' && this.state.deckTitle.length >= 3) {
+    if(this.state.title !== '' && this.state.title.length >= 3) {
       const id = Math.random().toString(36).substr(-8);
-      const title = this.state.deckTitle;
+      const title = this.state.title;
 
-      this.props.saveDeckTitle(id, title);
+      this.props.saveDeck(id, title);
       this.props.navigation.navigate('Deck', { id });
     }
   }
@@ -54,11 +54,14 @@ class CreateDeck extends Component {
             </Text>
             <TextInput
               style={styles.input}
-              value={this.state.deckTitle}
+              value={this.state.title}
               placeholder={"Enter the deck' title"}
-              onChangeText={(deckTitle) => this.setState({ deckTitle })}
+              onChangeText={(title) => this.setState({ title })}
             />
-            <TouchableOpacity style={styles.buttonAdd} onPress={this.onCreate}>
+            <TouchableOpacity
+              onPress={this.onCreate}
+              style={this.state.title.length >= 3 ? styles.buttonAdd : styles.buttonAddDisable}
+            >
               <Text style={styles.buttonAddText}>
                 Create
               </Text>
@@ -79,7 +82,7 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  saveDeckTitle
+  saveDeck
 })(CreateDeck);
 
 const { height, width } = Dimensions.get('window');
@@ -129,6 +132,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#00adb5',
+    shadowColor: '#000',
+    shadowOpacity: 0.35,
+    justifyContent: 'center',
+    shadowOffset: { width: 0, height: 2 },
+  },
+  buttonAddDisable: {
+    height: 50,
+    padding: 5,
+    marginTop: 15,
+    borderRadius: 3,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#777',
     shadowColor: '#000',
     shadowOpacity: 0.35,
     justifyContent: 'center',
