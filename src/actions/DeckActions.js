@@ -103,9 +103,33 @@ export const removeDeck = (id) => {
 export const addCard = (card, deckId) => {
   return dispatch => {
     dispatch({
-      LOADING
-    })
+      type: LOADING
+    });
 
-    console.log(card, deckId)
+    AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(result => {
+      let decks = JSON.parse(result);
+      decks[deckId].questions.push(card);
+
+      AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(decks))
+      .then(result => {
+        AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+        .then(result => {
+          dispatch({
+            type: SUCCESS_GETTING_DECK,
+            payload: JSON.parse(result)
+          });
+        })
+        .catch(error => {
+          console.log(error)
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 }

@@ -25,21 +25,21 @@ class AddCard extends Component {
   };
 
   state = {
+    answer: '',
     question: '',
-    answer: ''
   }
 
   onCreate = () => {
     if(this.state.question !== '' && this.state.answer) {
       const card = {
-        question,
-        answer
+        question: this.state.question,
+        answer: this.state.answer
       }
 
       const deckId = this.props.navigation.getParam('id', 'DEFAULT_VALUE');
-      this.props.addCard(card, deckId);
 
-      // this.props.navigation.navigate('Deck', { deckId });
+      this.props.addCard(card, deckId);
+      this.props.navigation.navigate('Deck', { deckId });
     }
   }
 
