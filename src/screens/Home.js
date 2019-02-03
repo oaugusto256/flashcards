@@ -27,7 +27,6 @@ class Home extends Component {
   };
 
   componentDidMount = () => {
-    // this.props.clearStorage();
     this.props.getDecks();
   }
 
@@ -47,7 +46,7 @@ class Home extends Component {
       })
     } else {
       return (
-        <Text style={styles.text}>No deck was added yet!</Text>
+        <Text style={styles.text}>No <EmphasizeText text={'deck'}/> was added yet!</Text>
       )
     }
   }

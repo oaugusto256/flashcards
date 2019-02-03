@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import HomeScreen from './src/screens/Home';
 import DeckScreen from './src/screens/Deck';
-import CreateDeckScreen from './src/screens/CreateDeck';
+import QuizScreen from './src/screens/Quiz';
 import AddCardScreen from './src/screens/AddCard';
+import CreateDeckScreen from './src/screens/CreateDeck';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -18,6 +19,7 @@ const AppNavigator = createStackNavigator(
     CreateDeck: CreateDeckScreen,
     Deck: DeckScreen,
     AddCard: AddCardScreen,
+    Quiz: QuizScreen
   },
   {
     initialRouteName: "Home"

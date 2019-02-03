@@ -74,6 +74,16 @@ class Deck extends Component {
     }
   }
 
+  onStartQuiz = () => {
+    const { id } = this.state;
+
+    if(this.props.decks !== null) {
+      if(this.props.decks[id].questions.length > 0) {
+        this.props.navigation.navigate('Quiz', { id });
+      }
+    }
+  }
+
   onAddCard = () => {
     const { id } = this.state;
     this.props.navigation.navigate('AddCard', { id });
@@ -99,7 +109,10 @@ class Deck extends Component {
                   <Text style={styles.subText}>{`${this.props.decks[id].questions.length} cards`}</Text>
                 </View>
                 <View style={styles.actionContainer}>
-                  <TouchableOpacity style={this.props.decks[id].questions.length > 0 ? styles.buttonStart : styles.buttonDisable}>
+                  <TouchableOpacity
+                    onPress={this.onStartQuiz}
+                    style={this.props.decks[id].questions.length > 0 ? styles.buttonStart : styles.buttonDisable}
+                  >
                     <Text style={styles.buttonLabel}>
                       Start Quiz
                     </Text>
