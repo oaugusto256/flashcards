@@ -4,11 +4,12 @@ import {
   Text,
   View,
   StatusBar,
-  ScrollView,
   StyleSheet,
   Dimensions,
-  ActivityIndicator
+  TouchableOpacity,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import Loading from '../components/Loading';
 
 class Quiz extends Component {
   static navigationOptions = {
@@ -30,11 +31,10 @@ class Quiz extends Component {
   }
 
   componentDidMount = () => {
-    const questions = this.props.decks[this.props.navigation.getParam('id', 'DEFAULT_VALUE')].questions;
+    // const questions = this.props.decks[this.props.navigation.getParam('id', 'DEFAULT_VALUE')].questions;
 
     setTimeout(() => {
       this.setState({
-        questions,
         currentQuestion: 0,
         loading: false,
       })
@@ -50,32 +50,32 @@ class Quiz extends Component {
         />
         <View style={styles.screen}>
           {this.state.loading
-            ? <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#00adb5" />
-              </View>
+            ? <Loading />
             : <>
-                <ScrollView>
-                  <View style={styles.infoContainer}>
-                    <Text style={styles.introText}>It's time!</Text>
-                    <Text style={styles.countQuestionsText}>{this.state.currentQuestion + 1}/{this.state.questions.length}</Text>
+                <View style={styles.infoContainer}>
+                  <Text style={styles.introText}>It's time!</Text>
+                </View>
+                <View style={styles.questionContainer}>
+                  <Text style={styles.questionNumber}>#1</Text>
+                  <View style={styles.questionInfoContainer}>
+                    <Text style={styles.questionText}>
+                      "Does Udacity have free courses?"
+                    </Text>
                   </View>
-                  <View style={styles.questionContainer}>
-                    <Text>#1</Text>
-                    <Text>Question</Text>
-                    <TouchableOpacity>
-                      <Text>Show Answer</Text>
-                    </TouchableOpacity>
-                    <Text>Answer</Text>
-                  </View>
-                  <View styles={styles.actionContainer}>
-                    <TouchableOpacity>
-                      <Text>Correct</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                      <Text>Incorrect</Text>
+                  <View style={styles.questionAnswerContainer}>
+                    <TouchableOpacity style={styles.questionAnswerButton}>
+                      <Ionicons name="ios-eye" size={25} color="#fff" />
                     </TouchableOpacity>
                   </View>
-                </ScrollView>
+                </View>
+                <View style={styles.actionContainer}>
+                  <TouchableOpacity style={styles.buttonCorrect}>
+                    <Text style={styles.buttonLabel}>Correct</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity  style={styles.buttonIncorrect}>
+                    <Text style={styles.buttonLabel}>Incorrect</Text>
+                  </TouchableOpacity>
+                </View>
               </>}
         </View>
       </>
@@ -91,9 +91,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-
-})(Quiz);
+export default connect(mapStateToProps, {})(Quiz);
 
 const { height, width } = Dimensions.get('window');
 
@@ -104,13 +102,63 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
-    padding: 15,
+    paddingTop: 15,
+    paddingLeft: 15,
+    paddingRight: 15
   },
-  loadingContainer: {
-    flex: 1,
-    padding: 15,
+  questionContainer: {
+    flex: 6,
+    margin: 15,
+    padding: 5,
+    borderRadius: 5,
+    shadowColor: '#000',
+    shadowOpacity: 0.25,
+    backgroundColor: '#eeeeee',
+    borderBottomWidth: 4,
+    borderBottomColor: '#173f5f',
+    shadowOffset: { width: 0, height: 1 },
+  },
+  questionInfoContainer: {
+    flex: 4,
+    alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: 'row'
+  },
+  questionNumber: {
+    fontSize: 20,
+    padding: 5,
+    fontWeight: 'bold',
+    alignSelf: 'flex-end'
+  },
+  questionAnswerContainer: {
+    flex: 4,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  questionText: {
+    fontSize: 26,
+    fontWeight: 'bold'
+  },
+  questionAnswerButton: {
+    width: 65,
+    height: 65,
+    borderRadius: 3,
+    backgroundColor: '#173f5f',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOpacity: 0.35,
+    justifyContent: 'center',
+    shadowOffset: { width: 0, height: 2 },
+  },
+  questionAnswerButtonText: {
+    color: '#fff'
+  },
+  actionContainer: {
+    flex: 1,
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+    padding: 15,
   },
   introText: {
     fontSize: 30,
@@ -118,8 +166,37 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
   },
-  countQuestionsText: {
-    fontSize: 16,
-    alignSelf: 'center'
+  buttonLabel: {
+    color: '#fff'
   },
+  buttonCorrect: {
+    flex: 1,
+    height: 50,
+    padding: 5,
+    marginRight: 5,
+    borderRadius: 3,
+    marginBottom: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#00adb5',
+    shadowColor: '#000',
+    shadowOpacity: 0.35,
+    justifyContent: 'center',
+    shadowOffset: { width: 0, height: 2 },
+  },
+  buttonIncorrect: {
+    flex: 1,
+    height: 50,
+    padding: 5,
+    marginLeft: 5,
+    borderRadius: 3,
+    marginBottom: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ed553b',
+    shadowColor: '#000',
+    shadowOpacity: 0.35,
+    justifyContent: 'center',
+    shadowOffset: { width: 0, height: 2 },
+  }
 })
