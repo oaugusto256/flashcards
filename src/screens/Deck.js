@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import EmphasizeText from '../components/EmphasizeText';
 import { connect } from 'react-redux';
+import { verifyCurrentStorage } from '../actions';
 
 class Deck extends Component {
   static navigationOptions = {
@@ -24,27 +25,32 @@ class Deck extends Component {
   };
 
   state = {
-    loading: true,
-    deckTitle: '',
-    numberOfCards: 0
+    id: '',
+    loading: true
   }
 
   componentDidMount = () => {
-    console.log('Id to render', this.props.navigation.getParam('id', 'DEFAULT_VALUE'));
+    if(this.props.decks !== null) {
+      if(this.props.decks[this.props.navigation.getParam('id', 'DEFAULT_VALUE')]) {
+        this.setState({
+          loading: false,
+          id: this.props.navigation.getParam('id', 'DEFAULT_VALUE')
+        })
+      }
+    }
+  }
 
-    const deck_id = this.props.navigation.getParam('id', 'DEFAULT_VALUE');
-    const deck = this.props.decks.map(deck => {
-      if(deck.id = deck_id)
-        return deck
-    })
-
-    console.log('Deck to render', deck[0]);
-
-    this.setState({
-      loading: false,
-      deckTitle: deck[0].title,
-      numberOfCards: deck[0].questions.length
-    })
+  componentDidUpdate = (prevProps) => {
+    if(this.props.decks !== prevProps.decks) {
+      if(this.props.decks !== null) {
+        if(this.props.decks[this.props.navigation.getParam('id', 'DEFAULT_VALUE')]) {
+          this.setState({
+            loading: false,
+            id: this.props.navigation.getParam('id', 'DEFAULT_VALUE')
+          })
+        }
+      }
+    }
   }
 
   onCreate = () => {
@@ -52,6 +58,8 @@ class Deck extends Component {
   }
 
   render() {
+    const { id } = this.state;
+
     return (
       <>
         <StatusBar
@@ -65,8 +73,8 @@ class Deck extends Component {
               </View>
             : <>
                 <View style={styles.infoContainer}>
-                  <Text style={styles.introText}>{this.state.deckTitle}</Text>
-                  <Text style={styles.subText}>{`${this.state.numberOfCards} cards`}</Text>
+                  <Text style={styles.introText}>{this.props.decks[id].title}</Text>
+                  <Text style={styles.subText}>{`${this.props.decks[id].questions.length} cards`}</Text>
                 </View>
                 <View style={styles.actionContainer}>
                   <TouchableOpacity style={styles.butonStart}>
@@ -108,7 +116,7 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-
+  verifyCurrentStorage
 })(Deck);
 
 const { height } = Dimensions.get('window');

@@ -3,33 +3,88 @@ import { AsyncStorage } from 'react-native';
 const FLASHCARDS_STORAGE_KEY = 'Flashcards:Storage';
 
 import {
-  GETTING_DECK,
+  LOADING,
+  OPEN_DECK,
   SAVING_DECK,
+  CLEAR_STORAGE,
+  VERIFY_STORAGE,
   ERROR_GETTING_DECK,
   SUCCESS_GETTING_DECK,
 } from '../types';
 
+export const clearStorage = () => {
+  return dispatch => {
+    AsyncStorage.clear()
+    .then(result =>{
+      console.log("Everything were cleared!")
+    })
+    .catch(error =>{
+      console.log("Something happend:", error)
+    })
+
+    dispatch({
+      type: CLEAR_STORAGE
+    })
+  }
+}
+
+export const verifyCurrentStorage = () => {
+  return dispatch => {
+    dispatch({
+      type: VERIFY_STORAGE
+    });
+
+    AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(result => {
+      console.log(JSON.parse(result))
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+}
+
 export const getDecks = () => {
   return dispatch => {
     dispatch({
-      type: GETTING_DECK
+      type: LOADING,
     });
+
+    AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(result => {
+      dispatch({
+        type: SUCCESS_GETTING_DECK,
+        payload: JSON.parse(result)
+      });
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 }
 
 export const saveDeckTitle = (id, title) => {
   return dispatch => {
-    const deck = {
-      id,
-      title,
-      questions: []
-    }
-
-    AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({ [id]: title }))
-
-    dispatch({
-      type: SAVING_DECK,
-      payload: deck
+    AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
+      [id]: {
+        title,
+        questions: []
+      }
+    }))
+    .then(result => {
+      AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+      .then(result => {
+        dispatch({
+          type: SUCCESS_GETTING_DECK,
+          payload: JSON.parse(result)
+        });
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    })
+    .catch(error => {
+      console.log(error)
     })
   }
 }

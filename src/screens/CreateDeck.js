@@ -34,7 +34,6 @@ class CreateDeck extends Component {
       const title = this.state.deckTitle;
 
       this.props.saveDeckTitle(id, title);
-
       this.props.navigation.navigate('Deck', { id });
     }
   }
