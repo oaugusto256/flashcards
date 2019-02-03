@@ -35,18 +35,13 @@ class CreateDeck extends Component {
 
       this.props.saveDeckTitle(id, title);
 
-      // this.props.navigation.navigate('Deck');
+      this.props.navigation.navigate('Deck', { id });
     }
-  }
-
-  debugState = () => {
-    console.log(this.props);
   }
 
   render() {
     return (
       <>
-        {this.debugState()}
         <StatusBar
           barStyle="light-content"
           backgroundColor="#393e46"
@@ -54,14 +49,14 @@ class CreateDeck extends Component {
         <View style={styles.screen}>
           <View style={styles.content}>
             <Text style={styles.introText}>First,</Text>
-            <Text style={styles.text}>What name you will give to your <EmphasizeText text={'new'} /> deck?</Text>
+            <Text style={styles.text}>What title you will give to your <EmphasizeText text={'new'} /> deck?</Text>
             <Text style={styles.inputLabel}>
-              Deck' name:
+              Deck' title:
             </Text>
             <TextInput
               style={styles.input}
               value={this.state.deckTitle}
-              placeholder={"Enter the deck' name"}
+              placeholder={"Enter the deck' title"}
               onChangeText={(deckTitle) => this.setState({ deckTitle })}
             />
             <TouchableOpacity style={styles.buttonAdd} onPress={this.onCreate}>

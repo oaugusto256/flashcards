@@ -19,7 +19,11 @@ export const getDecks = () => {
 
 export const saveDeckTitle = (id, title) => {
   return dispatch => {
-    const deck = { id, title }
+    const deck = {
+      id,
+      title,
+      questions: []
+    }
 
     AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({ [id]: title }))
 
