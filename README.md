@@ -8,11 +8,10 @@
 
 The application was tested using a iOS(iPhone 6S) device, unfortunately I don't have a Android device to test the app with it.
 
-## What you will need?
-
-It's necessary that you have a mobile device that has Expo app, and a computer that can run the Expo CLI.
-
 ## How to use and test
+
+*PS: It's necessary that you have a mobile device that has Expo app, and a computer that can run the Expo CLI.*
+
 
 Clone the repository to a folder of your choice, redirect to the cloned repository and execute the following command:
 
