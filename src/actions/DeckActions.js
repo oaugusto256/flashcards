@@ -4,11 +4,8 @@ const FLASHCARDS_STORAGE_KEY = 'Flashcards:Storage';
 
 import {
   LOADING,
-  OPEN_DECK,
-  SAVING_DECK,
   CLEAR_STORAGE,
   VERIFY_STORAGE,
-  ERROR_GETTING_DECK,
   SUCCESS_GETTING_DECK,
 } from '../types';
 
@@ -90,14 +87,28 @@ export const saveDeck = (id, title) => {
 }
 
 export const removeDeck = (id) => {
-  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KE)
-    .then((results) => {
-      const data = JSON.parse(results)
-      data[key] = undefined
-      delete data[key]
-      AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(data))
+  return dispatch => {
+    dispatch({
+      type: LOADING
     })
 
+    AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(result => {
+      let decks = JSON.parse(result)
+      decks[id] = undefined
+      delete decks[id]
+
+      AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(decks))
+
+      dispatch({
+        type: SUCCESS_GETTING_DECK,
+        payload: decks
+      });
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
 }
 
 export const addCard = (card, deckId) => {

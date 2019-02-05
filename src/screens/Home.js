@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { getDecks, verifyCurrentStorage, clearStorage } from '../actions';
+import Loading from '../components/Loading';
 import DeckCard from '../components/DeckCard';
 import ButtonAddDeck from '../components/ButtonAddDeck';
 import EmphasizeText from '../components/EmphasizeText';
@@ -60,9 +61,7 @@ class Home extends Component {
         />
         <View style={styles.screen}>
           {this.props.loading
-            ? <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#00adb5" />
-              </View>
+            ? <Loading />
             : <>
                 <ScrollView>
                   <View style={styles.content}>

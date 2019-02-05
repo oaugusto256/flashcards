@@ -5,14 +5,14 @@ import {
   StatusBar,
   StyleSheet,
   Dimensions,
+  ScrollView,
   TouchableOpacity,
-  ActivityIndicator
 } from 'react-native';
 import EmphasizeText from '../components/EmphasizeText';
 import { connect } from 'react-redux';
-import { verifyCurrentStorage } from '../actions';
+import { removeDeck } from '../actions';
 import QuestionCard from '../components/QuestionCard';
-import { ScrollView } from 'react-native-gesture-handler';
+import Loading from '../components/Loading';
 
 class Deck extends Component {
   static navigationOptions = {
@@ -89,6 +89,14 @@ class Deck extends Component {
     this.props.navigation.navigate('AddCard', { id });
   }
 
+  onDeleteDeck = async () => {
+    await this.setState({
+      loading: true
+    })
+    this.props.removeDeck(this.state.id);
+    this.props.navigation.navigate('Home');
+  }
+
   render() {
     const { id } = this.state;
 
@@ -100,9 +108,7 @@ class Deck extends Component {
         />
         <View style={styles.screen}>
           {this.state.loading
-            ? <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#00adb5" />
-              </View>
+            ? <Loading />
             : <>
                 <View style={styles.infoContainer}>
                   <Text style={styles.introText}>{this.props.decks[id].title}</Text>
@@ -123,7 +129,7 @@ class Deck extends Component {
                         Add Card
                       </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonDeleteDeck}>
+                    <TouchableOpacity style={styles.buttonDeleteDeck} onPress={this.onDeleteDeck}>
                       <Text style={styles.buttonLabel}>
                         Delete Deck
                       </Text>
@@ -151,7 +157,7 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  verifyCurrentStorage
+  removeDeck
 })(Deck);
 
 const { height } = Dimensions.get('window');
