@@ -6,7 +6,6 @@ import {
   ScrollView,
   StyleSheet,
   Dimensions,
-  ActivityIndicator
 } from 'react-native';
 import { connect } from 'react-redux';
 import { getDecks, verifyCurrentStorage, clearStorage } from '../actions';
