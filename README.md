@@ -2,6 +2,8 @@
 
 :flower_playing_cards: "Flashcards" is the third React project made for the React Udacity Nanodegree program.
 
+![alt text](https://github.com/tavioalves/flashcards/blob/master/images/flashcards.png)
+
 ## Infra needed
 
 You gonna need a mobile device that has Expo.
