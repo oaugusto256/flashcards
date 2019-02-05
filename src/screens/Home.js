@@ -34,7 +34,7 @@ class Home extends Component {
   renderDecks = () => {
     const { decks, navigation } = this.props;
 
-    if(decks) {
+    if (decks) {
       return Object.keys(decks).map(index => {
         return (
           <DeckCard
@@ -47,7 +47,7 @@ class Home extends Component {
       })
     } else {
       return (
-        <Text style={styles.text}>No <EmphasizeText text={'deck'}/> was added yet!</Text>
+        <Text style={styles.text}>No <EmphasizeText text={'deck'} /> was added yet!</Text>
       )
     }
   }
@@ -63,17 +63,17 @@ class Home extends Component {
           {this.props.loading
             ? <Loading />
             : <>
-                <ScrollView>
-                  <View style={styles.content}>
-                    <Text style={styles.introText}>Welcome!</Text>
-                    <Text style={styles.text}>Select a deck to <EmphasizeText text={'play'}/> or <EmphasizeText text={'edit'}/> at the list below, or <EmphasizeText text={'create'}/> a new one with the button at the bottom.</Text>
-                    {this.renderDecks()}
-                  </View>
-                </ScrollView>
-                <ButtonAddDeck
-                  onPress={() => this.props.navigation.navigate('CreateDeck')}
-                />
-              </>}
+              <ScrollView>
+                <View style={styles.content}>
+                  <Text style={styles.introText}>Welcome!</Text>
+                  <Text style={styles.text}>Select a deck to <EmphasizeText text={'play'} /> or <EmphasizeText text={'edit'} /> at the list below, or <EmphasizeText text={'create'} /> a new one with the button at the bottom.</Text>
+                  {this.renderDecks()}
+                </View>
+              </ScrollView>
+              <ButtonAddDeck
+                onPress={() => this.props.navigation.navigate('CreateDeck')}
+              />
+            </>}
         </View>
       </>
     );
