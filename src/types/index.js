@@ -9,3 +9,4 @@ export const SUCCESS_GETTING_DECK = 'success_getting_deck';
 
 // Notification
 export const SET_LOCAL_NOTIFICATION = 'set_local_notification';
+export const CANCEL_LOCAL_NOTIFICATION = 'cancel_local_notification';

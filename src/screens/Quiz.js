@@ -8,6 +8,8 @@ import {
   Dimensions,
   TouchableOpacity
 } from "react-native";
+import { setLocalNotification, clearLocalNotification } from '../actions';
+
 import { Ionicons } from "@expo/vector-icons";
 import Loading from "../components/Loading";
 
@@ -32,7 +34,10 @@ class Quiz extends Component {
     currentQuestion: 0
   };
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
+    await this.props.clearLocalNotification()
+    this.props.setLocalNotification()
+
     const questions = this.props.decks[
       this.props.navigation.getParam("id", "DEFAULT_VALUE")
     ].questions;
@@ -174,13 +179,13 @@ class Quiz extends Component {
                 {questions[currentQuestion].answer}
               </Text>
             ) : (
-              <TouchableOpacity
-                style={styles.questionAnswerButton}
-                onPress={this.showAnswer}
-              >
-                <Ionicons name="ios-eye" size={25} color="#fff" />
-              </TouchableOpacity>
-            )}
+                <TouchableOpacity
+                  style={styles.questionAnswerButton}
+                  onPress={this.showAnswer}
+                >
+                  <Ionicons name="ios-eye" size={25} color="#fff" />
+                </TouchableOpacity>
+              )}
           </View>
         </View>
       );
@@ -197,18 +202,18 @@ class Quiz extends Component {
           {this.state.loading ? (
             <Loading />
           ) : (
-            <>
-              <View style={styles.infoContainer}>
-                {isOver ? (
-                  <Text style={styles.introText}>It's over!</Text>
-                ) : (
-                  <Text style={styles.introText}>It's time to learn!</Text>
-                )}
-              </View>
-              {this.renderQuestion()}
-              <View style={styles.actionContainer}>{this.renderButtons()}</View>
-            </>
-          )}
+              <>
+                <View style={styles.infoContainer}>
+                  {isOver ? (
+                    <Text style={styles.introText}>It's over!</Text>
+                  ) : (
+                      <Text style={styles.introText}>It's time to learn!</Text>
+                    )}
+                </View>
+                {this.renderQuestion()}
+                <View style={styles.actionContainer}>{this.renderButtons()}</View>
+              </>
+            )}
         </View>
       </>
     );
@@ -225,7 +230,10 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  {
+    setLocalNotification,
+    clearLocalNotification
+  }
 )(Quiz);
 
 const { height, width } = Dimensions.get("window");

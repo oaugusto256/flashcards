@@ -2,18 +2,26 @@ import { AsyncStorage } from 'react-native';
 import { Notifications, Permissions } from 'expo';
 
 const FLASHCARDS_STORAGE_KEY = 'Flashcards:Storage';
-const NOTIFICATION_KEY = 'Flashcards:Notification';
+const NOTIFICATION_KEY = 'Flashcards:Notifications';
 
 import {
   LOADING,
   CLEAR_STORAGE,
   VERIFY_STORAGE,
   SUCCESS_GETTING_DECK,
+  CANCEL_LOCAL_NOTIFICATION,
   SET_LOCAL_NOTIFICATION
 } from '../types';
 
 export const clearLocalNotification = () => {
+  return dispatch => {
+    dispatch({
+      type: CANCEL_LOCAL_NOTIFICATION
+    })
 
+    AsyncStorage.removeItem(NOTIFICATION_KEY)
+      .then(Notifications.cancelAllScheduledNotificationsAsync)
+  }
 }
 
 export const createNotification = () => {
@@ -29,14 +37,14 @@ export const createNotification = () => {
 export const setLocalNotification = () => {
   return dispatch => {
     dispatch({
-      type: SET_LOCAL_NOTIFICATION
+      type: LOADING
     })
 
     AsyncStorage.getItem(NOTIFICATION_KEY)
       .then(JSON.parse)
       .then((data) => {
         if (data === null) {
-          Permissions.askAsync(Permissions.NOTIFICATION)
+          Permissions.askAsync(Permissions.NOTIFICATIONS)
             .then(({ status }) => {
               if (status === 'granted') {
                 Notifications.cancelAllScheduledNotificationsAsync()
@@ -56,11 +64,18 @@ export const setLocalNotification = () => {
               )
 
               AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
+
+              dispatch({
+                type: SET_LOCAL_NOTIFICATION
+              })
             })
+        } else {
+          dispatch({
+            type: SET_LOCAL_NOTIFICATION
+          })
         }
       })
   }
-
 }
 
 export const clearStorage = () => {

@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { getDecks, verifyCurrentStorage, clearStorage } from '../actions';
+import { getDecks, verifyCurrentStorage, clearStorage, setLocalNotification } from '../actions';
 import Loading from '../components/Loading';
 import DeckCard from '../components/DeckCard';
 import ButtonAddDeck from '../components/ButtonAddDeck';
@@ -28,6 +28,7 @@ class Home extends Component {
 
   componentDidMount = () => {
     this.props.getDecks();
+    this.props.setLocalNotification();
   }
 
   renderDecks = () => {
@@ -90,10 +91,11 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   getDecks,
   clearStorage,
-  verifyCurrentStorage
+  verifyCurrentStorage,
+  setLocalNotification
 })(Home);
 
-const { height, width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   screen: {

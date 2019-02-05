@@ -5,6 +5,7 @@ import {
   CLEAR_STORAGE,
   ERROR_GETTING_DECK,
   SUCCESS_GETTING_DECK,
+  SET_LOCAL_NOTIFICATION
 } from '../types';
 
 const INITIAL_STATE = {
@@ -17,6 +18,8 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case LOADING:
       return { ...state, loading: true }
+    case SET_LOCAL_NOTIFICATION:
+      return { ...state, loading: false }
     case OPEN_DECK:
       return { ...state, loading: false, deck: action.payload }
     case SAVING_DECK:
