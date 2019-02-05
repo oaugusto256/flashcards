@@ -125,7 +125,7 @@ class Deck extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.buttonDeleteDeck}>
                       <Text style={styles.buttonLabel}>
-                        Delete Quiz
+                        Delete Deck
                       </Text>
                     </TouchableOpacity>
                   </View>
