@@ -4,9 +4,9 @@
 
 ![alt text](https://github.com/tavioalves/flashcards/blob/master/images/flashcards.png)
 
-## Infra needed
+## What you will need?
 
-You gonna need a mobile device that has Expo.
+It's necessary that you have a mobile device that has Expo app, and a computer that can run the Expo CLI.
 
 ## How to use and test
 
