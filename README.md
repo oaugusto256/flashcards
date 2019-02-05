@@ -2,11 +2,11 @@
 
 :flower_playing_cards: "Flashcards" is the third React project made for the React Udacity Nanodegree program.
 
-## Live
+## Infra needed
 
-You can use and access the project at: Link to Expo
+You gonna need a mobile device that has Expo.
 
-## How to use locally
+## How to use and test
 
 Clone the repository to a folder of your choice, redirect to the cloned repository and execute the following command:
 
@@ -19,18 +19,19 @@ After the installation of the libs and dependencies, start the project executing
 yarn start
 ```
 
+Use the mobile device camera to scan the QRCode and run the project.
+
 ## Organization
 
 The project is organized in the following way:
 
 - src
-  - components
-  - containers
   - actions
-  - images
+  - components
   - reducers
-  - index.js
-  - index.scss
+  - screens
+  - types
+- App.js
 
 ## Libs
 
@@ -38,13 +39,11 @@ Below we can see all the libs used in the project:
 
 Name | Function
 |:---:| :-----:|
-axios | Client to execute HTTP requests
-redux | Conteiner de estado previsível
-redux-thunk | Middleware para requisições assincronas
-react-redux | Ligação do React com Redux
-react-router-dom | Criador de rotas
-react-icons | Bunch of icons for react
-react-spinners | Lib for loading spinners
+expo | A free and open source toolchain built around React Native to help you build native iOS and Android apps using JavaScript and React.
+redux | Helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test.
+redux-thunk | Thunks are the recommended middleware for basic Redux side effects logic, including complex synchronous logic that needs access to the store, and simple async logic like AJAX requests.
+react-redux | Binding of React and Redux
+react-navigation | React native navigation
 
 ## License
 
