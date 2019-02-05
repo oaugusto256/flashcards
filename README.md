@@ -1,4 +1,4 @@
-# readable
+# flashcards
 
 :flower_playing_cards: "Flashcards" is the third React project made for the React Udacity Nanodegree program.
 
